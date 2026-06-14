@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibnu Sina Eyewear | Premium & Minimalis</title>
+    <style>
+        /* CSS: GAYA PREMIUM & MINIMALIS */
+        :root {
+            --primary-bg: #0a0a0a;
+            --text-light: #ffffff;
+            --text-dim: #a0a0a0;
+            --accent: #d4af37;
+            --card-bg: #151515;
+            --danger: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Navigasi */
+        nav {
+            position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.95);
+            padding: 1.5rem 5%; display: flex; justify-content: space-between;
+            align-items: center; z-index: 1000; border-bottom: 1px solid #222;
+        }
+        nav h1 { font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; }
+        nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        nav a, nav li.menu-troli {
+            color: var(--text-light); text-decoration: none; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: color 0.3s;
+        }
+        nav a:hover, nav li.menu-troli:hover { color: var(--accent); }
+        .badge-troli {
+            background-color: var(--accent); color: #000; padding: 2px 8px;
+            border-radius: 50%; font-weight: bold; margin-left: 5px;
+        }
+
+        /* Ruang Seksyen Umum */
+        section { padding: 6rem 5% 4rem; min-height: auto; }
+        h2.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* 1. Halaman Utama (Hero) */
+        #home {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #0a0a0a 100%); padding-top: 0;
+        }
+        #home h2 { font-size: 4rem; font-weight: 300; margin-bottom: 1rem; letter-spacing: 5px; }
+        #home p { color: var(--text-dim); font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; }
+
+        /* 2. Seksyen Kelebihan Teknologi */
+        .grid-kelebihan { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .kad-kelebihan { background: var(--card-bg); padding: 2rem; border-radius: 4px; border: 1px solid #222; text-align: left; }
+        .kad-kelebihan h3 { color: var(--accent); margin-bottom: 1rem; font-size: 1.2rem; }
+        .kad-kelebihan ul { list-style-type: none; }
+        .kad-kelebihan ul li { color: var(--text-dim); margin-bottom: 10px; font-size: 0.9rem; padding-left: 15px; position: relative; }
+        .kad-kelebihan ul li::before { content: "•"; color: var(--accent); position: absolute; left: 0; }
+
+        /* 3. Katalog / Koleksi */
+        .grid-katalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .kad-produk {
+            background: var(--card-bg); padding: 2rem; border-radius: 4px;
+            text-align: center; border: 1px solid #222; transition: transform 0.3s, border-color 0.3s;
+        }
+        .kad-produk:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .mockup-gambar {
+            width: 100%; height: 200px; background: #000; margin-bottom: 1.5rem;
+            display: flex; align-items: center; justify-content: center; border-radius: 2px; overflow: hidden;
+        }
+        .mockup-gambar img { width: 100%; height: 100%; object-fit: cover; }
+        .kad-produk h3 { margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .kad-produk p { color: var(--text-dim); margin-bottom: 1.5rem; font-size: 0.9rem;}
+
+        /* Butang CTA */
+        .btn {
+            background: transparent; color: var(--text-light); border: 1px solid var(--text-light);
+            padding: 12px 24px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+            transition: all 0.3s; font-size: 0.8rem; width: 100%;
+        }
+        .btn:hover:not(:disabled) { background: var(--text-light); color: var(--primary-bg); }
+        .btn-utama { background: var(--text-light); color: var(--primary-bg); width: auto; font-size: 1rem; }
+        .btn-utama:hover { background: var(--accent); border-color: var(--accent); color: var(--primary-bg); }
+        .btn-buang { background: transparent; border: 1px solid var(--danger); color: var(--danger); padding: 5px 10px; font-size: 0.7rem; margin-top: 10px; }
+        .btn-buang:hover { background: var(--danger); color: white; }
+
+        /* Info Containers */
+        .info-container { max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 3rem; border: 1px solid #222; }
+        footer { text-align: center; padding: 3rem; border-top: 1px solid #222; color: var(--text-dim); font-size: 0.9rem; }
+
+        /* Modal / Pop-up */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: var(--card-bg); padding: 2rem; border: 1px solid #333; max-width: 500px; width: 90%;
+            text-align: center; position: relative; max-height: 90vh; overflow-y: auto;
+        }
+        .tutup-modal { position: absolute; top: 10px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #888; }
+        .item-troli { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding: 10px 0; text-align: left; }
+        .jumlah-troli { font-size: 1.5rem; color: var(--accent); margin: 15px 0; font-weight: bold; }
+        
+        /* CSS Borang Pelanggan & Pembayaran */
+        .borang-container { text-align: left; margin-bottom: 20px; background: #111; padding: 15px; border: 1px solid #333; border-radius: 4px; }
+        .borang-container p.tajuk-borang { color: var(--accent); margin-bottom: 15px; font-weight: bold; font-size: 1rem; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .borang-container input, .borang-container textarea, .borang-container select {
+            width: 100%; padding: 10px; margin-bottom: 12px; background: #222; border: 1px solid #444; 
+            color: var(--text-light); font-family: inherit; border-radius: 4px; font-size: 0.9rem;
+        }
+        .borang-container input:focus, .borang-container textarea:focus, .borang-container select:focus {
+            outline: none; border-color: var(--accent);
+        }
+        .pilihan-bayaran label { display: block; margin-bottom: 10px; cursor: pointer; font-size: 0.9rem; }
+        .pilihan-bayaran input[type="radio"] { width: auto; margin-right: 10px; margin-bottom: 0; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>Ibnu Sina</h1>
+        <ul>
+            <li><a href="#home">Utama</a></li>
+            <li><a href="#katalog">Katalog</a></li>
+            <li><a href="#hubungi">Hubungi</a></li>
+            <li class="menu-troli" onclick="bukaTroli()">🛒 Troli <span class="badge-troli" id="cart-count">0</span></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h2>PENGLIHATAN JELAS.<br>GAYA PREMIUM.</h2>
+        <p>Koleksi cermin mata eksklusif yang melindungi mata anda siang dan malam.</p>
+        <button class="btn btn-utama" onclick="document.getElementById('katalog').scrollIntoView();">Lihat Koleksi</button>
+    </section>
+
+    <section id="teknologi" style="background-color: #0f0f0f;">
+        <h2 class="section-title">Teknologi Lensa Kami</h2>
+        <div class="grid-kelebihan">
+            <div class="kad-kelebihan">
+                <h3>Fungsi HD Eyewear (2 in 1)</h3>
+                <ul>
+                    <li><strong>UV400 Protection:</strong> Lindungi mata daripada sinar UV yang merosakkan kornea & retina.</li>
+                    <li><strong>Polarized Lens:</strong> Tapis silau pantulan (jalan, air, cermin kereta). Sangat sesuai untuk aktiviti luar.</li>
+                </ul>
+            </div>
+            <div class="kad-kelebihan">
+                <h3>Kelebihan HD Eyewear</h3>
+                <ul>
+                    <li>Meningkatkan fokus dan ketenangan semasa memandu/bekerja.</li>
+                    <li>Mengekalkan keselesaan mata untuk jangka masa panjang.</li>
+                    <li>Lensa tahan calar, sesuai untuk kegunaan harian yang aktif.</li>
+                </ul>
+            </div>
+            <div class="kad-kelebihan" style="border-color: var(--accent);">
+                <h3>Autoclimate RayB (4 in 1)</h3>
+                <ul>
+                    <li><strong>Anti Blue Light:</strong> Tapis cahaya biru dari skrin (Laptop/Telefon).</li>
+                    <li><strong>Photochromic Lens:</strong> Lensa bertukar gelap automatik bila kena cahaya matahari & cerah bila redup.</li>
+                    <li>Termasuk fungsi UV400 & Polarized.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="katalog">
+        <h2 class="section-title">Koleksi Terkini</h2>
+        <div class="grid-katalog">
+            <div class="kad-produk">
+                <div class="mockup-gambar"><img src="https://images.unsplash.com/photo-1577803645773-f96470509666?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="HD RayB Yellow"></div>
+                <h3>HD RayB Yellow</h3>
+                <p>Khusus Waktu Malam | RM 150.00</p>
+                <button class="btn" onclick="paparProduk('HD RayB Yellow', 'Fungsi: UV400, Polarized. Sesuai dipakai pada waktu malam sahaja. Lensa tahan calar.', 150)">Lihat Butiran</button>
+            </div>
+            <div class="kad-produk">
+                <div class="mockup-gambar"><img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="HD Terminator Yellow"></div>
+                <h3>HD Terminator Yellow</h3>
+                <p>Khusus Waktu Malam (Petak) | RM 150.00</p>
+                <button class="btn" onclick="paparProduk('HD Terminator Yellow', 'Fungsi: UV400, Polarized. Design petak yang maskulin. Sesuai dipakai pada waktu malam sahaja.', 150)">Lihat Butiran</button>
+            </div>
+            <div class="kad-produk">
+                <div class="mockup-gambar"><img src="https://images.unsplash.com/photo-1589831377283-33cb1cc6bd5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="HD RayB Grey"></div>
+                <h3>HD RayB Grey</h3>
+                <p>Tapis Silau Siang | RM 150.00</p>
+                <button class="btn" onclick="paparProduk('HD RayB Grey', 'Fungsi: UV400, Polarized. Spek hitam yang berkesan menapis silau pada waktu siang.', 150)">Lihat Butiran</button>
+            </div>
+            <div class="kad-produk" style="opacity: 0.6; border-color: #333;">
+                <div class="mockup-gambar"><img src="https://images.unsplash.com/photo-1625591342274-124b1fde9772?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="HD Terminator Grey" style="filter: grayscale(100%);"></div>
+                <h3>HD Terminator Grey</h3>
+                <p>Tapis Silau Siang (Petak) | <span style="color: var(--danger); font-weight: bold;">STOK HABIS</span></p>
+                <button class="btn" style="border-color: #444; color: #555; cursor: not-allowed;" disabled>Kehabisan Stok</button>
+            </div>
+            <div class="kad-produk" style="border: 1px solid var(--accent); transform: scale(1.05);">
+                <div class="mockup-gambar"><img src="https://images.unsplash.com/photo-1509695507497-903c140c43b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Autoclimate RayB"></div>
+                <h3 style="color: var(--accent);">IBNUSINA AUTOCLIMATE RayB</h3>
+                <p>4-in-1 Premium Function | RM 250.00</p>
+                <button class="btn btn-utama" onclick="paparProduk('IBNUSINA AUTOCLIMATE RayB (ACRB)', 'Fungsi Premium: UV400, Polarized, Anti Blue Light, Photochromic. Bingkai Hitam (TR90 Fleksibel) dengan spring sisi. Design Unisex. Termasuk logo rasmi Ibnu Sina dan waranti 90 hari.', 250)">Lihat Butiran</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="hubungi">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <div class="info-container" style="text-align: center;">
+            <p style="margin-bottom: 2rem; color: var(--text-dim);">Ada pertanyaan mengenai spek, jaminan 90 hari, atau kesesuaian bingkai?</p>
+            <button class="btn btn-utama" onclick="window.open('https://wa.me/601161079686', '_blank')">WhatsApp Kami Sekarang</button>
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">Waktu Operasi: 10 Pagi - 10 Malam</p>
+        </div>
+    </section>
+
+    <footer><p>&copy; 2026 Ibnu Sina Eyewear. Hak Cipta Terpelihara.</p></footer>
+
+    <div id="modalProduk" class="modal">
+        <div class="modal-content">
+            <span class="tutup-modal" onclick="tutupModal('modalProduk')">&times;</span>
+            <h2 id="tajukProduk" style="margin-bottom: 0.5rem; margin-top: 1rem; color: var(--accent);">Nama</h2>
+            <p id="hargaProduk" style="color: white; font-size: 1.2rem; margin-bottom: 1rem; font-weight: bold;"></p>
+            <p id="spekProduk" style="color: var(--text-dim); margin-bottom: 2rem; font-size: 0.95rem; text-align: justify;"></p>
+            <button class="btn btn-utama" style="width: 100%; padding: 15px;" onclick="tambahKeTroli()">TAMBAH KE TROLI</button>
+        </div>
+    </div>
+
+    <div id="modalTroli" class="modal">
+        <div class="modal-content">
+            <span class="tutup-modal" onclick="tutupModal('modalTroli')">&times;</span>
+            <h2 style="margin-bottom: 1rem; letter-spacing: 2px;">Troli Anda</h2>
+            
+            <div id="senaraiTroli" style="margin-bottom: 1rem;">
+                </div>
+            
+            <div class="jumlah-troli">Jumlah: RM <span id="jumlahHarga">0</span></div>
+
+            <div class="borang-container">
+                <p class="tajuk-borang">1. Butiran Penghantaran</p>
+                <input type="text" id="custName" placeholder="Nama Penuh" required>
+                <input type="tel" id="custPhone" placeholder="Nombor Telefon bimbit" required>
+                <textarea id="custAddress" placeholder="Alamat Penuh (Rumah/Pejabat)" rows="3" required></textarea>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="custPostcode" placeholder="Poskod" style="width: 40%;" required>
+                    <select id="custState" style="width: 60%;" required>
+                        <option value="">-- Pilih Negeri --</option>
+                        <option value="Johor">Johor</option>
+                        <option value="Kedah">Kedah</option>
+                        <option value="Kelantan">Kelantan</option>
+                        <option value="Melaka">Melaka</option>
+                        <option value="Negeri Sembilan">Negeri Sembilan</option>
+                        <option value="Pahang">Pahang</option>
+                        <option value="Perak">Perak</option>
+                        <option value="Perlis">Perlis</option>
+                        <option value="Pulau Pinang">Pulau Pinang</option>
+                        <option value="Sabah">Sabah</option>
+                        <option value="Sarawak">Sarawak</option>
+                        <option value="Selangor">Selangor</option>
+                        <option value="Terengganu">Terengganu</option>
+                        <option value="W.P. Kuala Lumpur">W.P. Kuala Lumpur</option>
+                        <option value="W.P. Labuan">W.P. Labuan</option>
+                        <option value="W.P. Putrajaya">W.P. Putrajaya</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="borang-container pilihan-bayaran">
+                <p class="tajuk-borang">2. Kaedah Pembayaran</p>
+                <label><input type="radio" name="payment" value="Online Banking (Minta Nombor Akaun)" checked> Online Banking / Transfer (Biasa)</label>
+                <label><input type="radio" name="payment" value="DuitNow QR"> DuitNow QR</label>
+                <label><input type="radio" name="payment" value="Cash On Delivery (COD)"> Cash On Delivery (COD)</label>
+            </div>
+
+            <button class="btn btn-utama" style="width: 100%; padding: 15px;" onclick="sahkanPesanan()">HANTAR PESANAN SEKARANG</button>
+        </div>
+    </div>
+
+    <script>
+        let troli = [];
+        let produkSemasa = { nama: '', harga: 0 };
+        const nomborWhatsApp = "601161079686";
+
+        function paparProduk(nama, spesifikasi, harga) {
+            produkSemasa.nama = nama;
+            produkSemasa.harga = harga;
+            document.getElementById('tajukProduk').innerText = nama;
+            document.getElementById('spekProduk').innerText = spesifikasi;
+            document.getElementById('hargaProduk').innerText = "RM " + harga + ".00";
+            document.getElementById('modalProduk').style.display = 'flex';
+        }
+
+        function tambahKeTroli() {
+            troli.push({ nama: produkSemasa.nama, harga: produkSemasa.harga });
+            kemaskiniIkonTroli();
+            tutupModal('modalProduk');
+            alert(produkSemasa.nama + " telah ditambah ke troli!");
+        }
+
+        function buangItem(index) {
+            troli.splice(index, 1);
+            kemaskiniIkonTroli();
+            bukaTroli();
+        }
+
+        function kemaskiniIkonTroli() {
+            document.getElementById('cart-count').innerText = troli.length;
+        }
+
+        function bukaTroli() {
+            let htmlSenarai = "";
+            let jumlah = 0;
+            if (troli.length === 0) {
+                htmlSenarai = "<p style='color:#888; text-align:center;'>Troli anda masih kosong.</p>";
+            } else {
+                troli.forEach((item, index) => {
+                    htmlSenarai += `
+                    <div class="item-troli">
+                        <div>
+                            <strong>${item.nama}</strong><br>
+                            <span style="color:var(--text-dim);">RM ${item.harga}.00</span>
+                        </div>
+                        <button class="btn-buang" onclick="buangItem(${index})">X Batal</button>
+                    </div>`;
+                    jumlah += item.harga;
+                });
+            }
+            document.getElementById('senaraiTroli').innerHTML = htmlSenarai;
+            document.getElementById('jumlahHarga').innerText = jumlah + ".00";
+            document.getElementById('modalTroli').style.display = 'flex';
+        }
+
+        function sahkanPesanan() {
+            if (troli.length === 0) {
+                alert("Sila tambah produk ke dalam troli dahulu.");
+                return;
+            }
+
+            // Dapatkan Data Borang
+            let namaCust = document.getElementById('custName').value.trim();
+            let telCust = document.getElementById('custPhone').value.trim();
+            let alamatCust = document.getElementById('custAddress').value.trim();
+            let poskodCust = document.getElementById('custPostcode').value.trim();
+            let negeriCust = document.getElementById('custState').value;
+
+            // Semak jika borang kosong
+            if(!namaCust || !telCust || !alamatCust || !poskodCust || !negeriCust) {
+                alert("Sila lengkapkan semua Butiran Penghantaran terlebih dahulu.");
+                return;
+            }
+
+            let caraBayaran = document.querySelector('input[name="payment"]:checked').value;
+            
+            let jumlah = 0;
+            let mesejTroli = "";
+            troli.forEach((item, index) => {
+                mesejTroli += `${index + 1}. ${item.nama} - RM${item.harga}.00%0a`;
+                jumlah += item.harga;
+            });
+
+            // Susun mesej untuk hantar ke WhatsApp
+            let teksWhatsApp = `*PESANAN BARU - IBNU SINA EYEWEAR*%0a%0a`;
+            
+            teksWhatsApp += `*📦 BUTIRAN PENGHANTARAN*%0a`;
+            teksWhatsApp += `Nama: ${namaCust}%0a`;
+            teksWhatsApp += `No. Tel: ${telCust}%0a`;
+            teksWhatsApp += `Alamat: ${alamatCust}, ${poskodCust}, ${negeriCust}%0a%0a`;
+
+            teksWhatsApp += `*🛒 SENARAI PESANAN*%0a${mesejTroli}%0a`;
+            teksWhatsApp += `*Jumlah Keseluruhan:* RM${jumlah}.00%0a`;
+            teksWhatsApp += `*Kaedah Pembayaran:* ${caraBayaran}%0a%0a`;
+            
+            teksWhatsApp += `Sila semak butiran saya dan berikan maklumat pembayaran. Terima kasih!`;
+
+            window.open(`https://wa.me/${nomborWhatsApp}?text=${teksWhatsApp}`, '_blank');
+        }
+
+        function tutupModal(idModal) { document.getElementById(idModal).style.display = 'none'; }
+        window.onclick = function(event) { if (event.target.classList.contains('modal')) { event.target.style.display = "none"; } }
+    </script>
+
+</body>
+</html>
